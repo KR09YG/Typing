@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     [SerializeField] Text _timeText;
-    [SerializeField] float _timer = 60f;
+    [SerializeField] public float _timer = 60f;
     void Start()
     {
         
@@ -17,5 +17,9 @@ public class Timer : MonoBehaviour
     {
         _timer -= Time.deltaTime;
         _timeText.text = _timer.ToString("F2");
+        if ( _timer < 0)
+        {
+            Time.timeScale = 0;
+        }
     }
 }
