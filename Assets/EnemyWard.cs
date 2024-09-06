@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +15,7 @@ public class EnemyWard : MonoBehaviour
     {
         gameSystem =GameObject.Find("GameManager").GetComponent<GameSystem>();
         int rand = Random.Range(0, gameWard.Length - 1);
-        ward = gameWard[rand];
-        
+        ward = gameWard[rand];        
     }
     private void Update()
     {

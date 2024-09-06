@@ -31,7 +31,7 @@ public class GameSystem : MonoBehaviour
             good = true;
             swich = true;
             _tttext.text = "ê¨å˜";
-            hp -= 10;
+            hp -= 5;
         }
         else
         {
