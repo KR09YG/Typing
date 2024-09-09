@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class GameSystem : MonoBehaviour
 {
-    [SerializeField] Text _tttext;
-    [SerializeField] Text _tttext2;
+    [SerializeField] Text _successText;
+    [SerializeField] Text _missText;
+    [SerializeField] string[] trueWard;
+    [SerializeField] string[] trueWard2;
     Timer _timer;
     EnemyWard enemyWard;
     public bool swich = false;
@@ -15,33 +17,56 @@ public class GameSystem : MonoBehaviour
     bool good = false;
     float hp = 100;
     float maxHp = 100;
+    public int count = 0;
     Slider slider;
     private void Start()
     {
         slider = GameObject.Find("Slider").GetComponent<Slider>();
         _timer = GameObject.Find("GameManager").GetComponent<Timer>();
         enemyWard = GameObject.FindGameObjectWithTag("enemy").GetComponent<EnemyWard>();
-        Debug.Log(enemyWard.ward);
     }
     public void InputSystem(string text)
     {
-        if (text == enemyWard.ward)
+        Debug.Log(count);
+        Debug.Log(enemyWard.rand);
+        if (count <= 9)
         {
-            Debug.Log("a");
-            good = true;
-            swich = true;
-            _tttext.text = "¬Œ÷";
-            hp -= 5;
+            if (text == trueWard2[enemyWard.rand])
+            {
+                count++;
+                good = true;
+                swich = true;
+                _successText.text = "¬Œ÷";
+                hp -= 5;
+            }
+            else
+            {
+                _timer._timer -= 3;
+                good = true;
+                _successText.text = "Ž¸”s";
+            }
         }
-        else
+        else if (count > 9) 
         {
-            _timer._timer -= 3;
-            good = true;
-            _tttext.text = "Ž¸”s";
+            if (text == trueWard[enemyWard.rand])
+            {
+                Debug.Log("a");
+                good = true;
+                swich = true;
+                _successText.text = "¬Œ÷";
+                hp -= 5;
+            }
+            else
+            {
+                _timer._timer -= 3;
+                good = true;
+                _successText.text = "Ž¸”s";
+            }
         }
-        _tttext2.text = "";
-        Debug.Log(hp);
+            _missText.text = "";
+        
     }
+
     private void Update()
     {
         slider.value = hp / maxHp;
@@ -50,11 +75,12 @@ public class GameSystem : MonoBehaviour
         {
             timer = 0;
             good = false;
-            _tttext.enabled = true;
+            _successText.enabled = true;
         }
-        if ( timer > 1 )
+
+        if (timer > 1)
         {
-            _tttext.enabled = false;
+            _successText.enabled = false;
         }
     }
 }
