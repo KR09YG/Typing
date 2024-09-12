@@ -13,9 +13,9 @@ public class Focus : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            nameInputField.text = "";
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    nameInputField.text = "";
+        //}
     }
 }
