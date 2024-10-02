@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 using UnityEngine.Windows;
 
 public class GameSystem : MonoBehaviour
@@ -65,7 +66,7 @@ public class GameSystem : MonoBehaviour
                 audiosouce2.Play();
                 count++;
                 good = true;
-                hp -= 5;
+                ToweenChange(hp - 5);
                 //swich = true;
             }
             else if (text != trueWard2[enemyWard.rand])
@@ -89,7 +90,7 @@ public class GameSystem : MonoBehaviour
                 Debug.Log("a");
                 good = true;
                 //swich = true;
-                hp -= 5;
+                ToweenChange(hp - 5);                
             }
             else
             {
@@ -139,6 +140,7 @@ public class GameSystem : MonoBehaviour
             inputF.SetActive(false);
             gameObject.SetActive(false);
             timertext.enabled = false;
+            trueText.enabled = false;
             text.enabled = false;
             Invoke("TextTiming", 3f);
             zombie.Play("death2");
@@ -150,5 +152,13 @@ public class GameSystem : MonoBehaviour
     {
         text2.SetActive(true);
         button.SetActive(true);
+    }
+
+    void ToweenChange(float n)
+    {
+        DOTween.To(() => hp,
+            x => hp = x,
+            n,
+            1f);
     }
 }

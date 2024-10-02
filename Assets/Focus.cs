@@ -11,11 +11,5 @@ public class Focus : MonoBehaviour
         // InputFieldを自動でフォーカスする
         nameInputField.Select();
     }
-    private void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    nameInputField.text = "";
-        //}
-    }
+    
 }
